@@ -1,4 +1,4 @@
-import { readInput } from '../utils';
+import { readInput, sum } from '../utils';
 
 export const main = () => {
   const rawData = readInput();
@@ -63,8 +63,4 @@ export const isInvalidIdPartTwo = (id: string): boolean => {
 
 export const repeatN = (str: string, n: number) => {
   return makeRange([1, n]).map(() => str).join('');
-}
-
-export const sum = (xs: number[]): number => {
-  return xs.reduce((sum, x) => sum + x, 0);
 }

@@ -66,12 +66,3 @@ describe('repeatN', () => {
     })
 
 });
-
-describe('sum', () => {
-    test.each([
-        [[1], 1],
-        [[1, 2], 3]
-    ])('sum($0) -> $1', (input, expected) => {
-        expect(sum(input)).toBe(expected)
-    })
-});
