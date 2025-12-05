@@ -1,11 +1,12 @@
-import { readInput, sum } from '../utils';
+import { readInput, sum, makeArrayFromRange } from '../utils';
 
 export const main = () => {
   const rawData = readInput();
   if (!rawData) {
     throw new Error('could not read input from file');
   }
-  const allIds = parseInput(rawData).flatMap(makeRange);
+  const allIds = parseInput(rawData)
+    .flatMap(([from, to]) => makeArrayFromRange({ from, to }));
   const invalidIds = allIds.filter(id =>
     isInvalidIdPartTwo(id.toString()));
   const result = sum(invalidIds);
@@ -24,15 +25,6 @@ export const parseInput = (
       }
       return strings.map(s => Number(s)) as [number, number]
     })
-}
-
-export const makeRange = ([from, to]: [number, number]): number[] => {
-  let result = [] as number[];
-  for (let i = from; i <= to; i += 1) {
-    result.push(i);
-  }
-
-  return result;
 }
 
 export const isInvalidId = (id: string): boolean => {
@@ -62,5 +54,5 @@ export const isInvalidIdPartTwo = (id: string): boolean => {
 }
 
 export const repeatN = (str: string, n: number) => {
-  return makeRange([1, n]).map(() => str).join('');
+  return makeArrayFromRange({ from: 1, to: n }).map(() => str).join('');
 }
