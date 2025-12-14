@@ -4,3 +4,6 @@ export const sum = (xs: number[]): number => {
 
 export const mult = (xs: number[]): number =>
   xs.reduce((product, x) => product * x, 1);
+
+export const max = (xs: number[]): number =>
+  xs.reduce((acc, cur) => cur > acc ? cur : acc);
